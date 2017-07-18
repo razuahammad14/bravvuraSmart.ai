@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.box{
+  box-sizing: border-box;
+  height: 300px;
+  width: 415px;
+  border:1px solid #ccc;
+  overflow-y: scroll;
+}
+#id{
+  background-color: black;
+  color:#fff;
+}
+.msg{
+  color:red;
+}
+.title{
+  color:#FFC0CB;
+  font-weight: 700;
+  size: 20px
+}

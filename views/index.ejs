@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IBM Watson Conversation</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <script type="text/javascript">
+  let context = {};
+  function updateChatLog(user, message) { if (message) {
+   let div = document.createElement("div");
+    div.innerHTML = "<b>" + user + "</b>: " + message;
+    document.getElementById("history").appendChild(div);
+     document.getElementById("text").value = "";
+      }
+ 	 }
+  function sendMessage()
+  { let text = document.getElementById("text").value;
+   updateChatLog("You", text);
+
+    let payload = {};
+     if (text) { payload.input = {"text": text}; };
+      if (context) { payload.context = context; };
+
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+      	if (xhr.readyState == 4)
+      		{ if (xhr.status == 200)
+      		 { let json = JSON.parse(xhr.responseText);
+      		  context = json.context;
+      		  updateChatLog("BravvuraApp ", json.output.text);
+      		}
+ 			}
+			}
+xhr.open("POST", "./conv", true);
+xhr.setRequestHeader("Content-type", "application/json");
+xhr.send(JSON.stringify(payload));
+}
+
+function init()
+{ document.getElementById("text").addEventListener("keyup", function(e)
+ {
+ 	if (!e) { let e = window.event; } if (e.keyCode == 13) { sendMessage(); }
+ 	 }, false);
+ 	  sendMessage();
+ 	}
+</script>
+ </head>
+  <body onLoad="init()">
+    <div class ="container">
+      <p/>
+      <div><b>Bravvura SmartApps</b></div>
+
+
+     <p/><div id="history" class='box'>
+     </div>
+        <input type="text" id="text" name="text" size="50" /> <button onclick="sendMessage()">Send</button>
+
+    </div>
+
+
+
+   </body>
+    </html>

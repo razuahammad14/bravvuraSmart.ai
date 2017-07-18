@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script>
+
+    'use strict';
+
+//A base class is defined using class keyword
+    class Polygon{
+
+        constructor(height, width){
+          this.name ="Polygon";
+          this.height = height;
+          this.width = width;
+        }
+        /*Simple class instance methods using short-hand methods*/
+
+        sayName(){
+          console.log("Polygon is derived from greek polus(many)"+"and goina(angle)");
+        }
+    }
+
+    let p = new Polygon(300,400);
+    p.sayName();
+    console.log("width of p is "+p.width);
+
+    //Example 2: Creating a new class (expression-form)
+
+    //Our Polygon class above is an example of class declaration
+
+    const MyPoly = class poly{
+      getPolyName()
+      {
+          console.log("I am created using express mehod"+poly.name);
+      }
+    };
+
+    let inst = new MyPoly();
+    inst.getPolyName();
+
+      class Square extends Polygon{
+        constructor(length){
+          supper(length,length);
+          this.name= 'Square';
+        }
+
+        get area(){
+          return this.height*this.width;
+        }
+        set area(value){
+          this.area = value;
+        }
+      }
+
+      let s = new Square(5);
+      s.sayName();
+      
+
+
+    </script>
+</body>
+</html>
